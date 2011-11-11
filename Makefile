@@ -1,7 +1,7 @@
 
 shackl: src/*
 	mlton src/shackl.mlb
-	mv src/shackl bin
+	mv src/shackl .
 
 install:
-	install bin/shackl $(DESTDIR)/bin
+	install shackl $(DESTDIR)/bin
