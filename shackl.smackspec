@@ -1,4 +1,4 @@
-provides: shackl 0.0.0
+provides: shackl 0.0.1
 description: SHackL, single file MLTon front-end with configurable base environment
 maintainer: Morten Brøns-Pedersen <f at ntast dot dk>
 keywords: front-end, mlton
