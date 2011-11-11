@@ -1,0 +1,7 @@
+provides: shackl 0.0.0
+description: SHackL, single file MLTon front-end with configurable base
+             environment
+maintainer: Morten Brøns-Pedersen <f at ntast dot dk>
+keywords: front-end, mlton
+bug-url: https://github.com/mortenbp/shackl/issues
+platform: mlton
