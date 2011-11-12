@@ -1,7 +1,16 @@
 
-val INCLUDE_FILE = "~/.shackl"
-
 structure FS = OS.FileSys
+
+fun die s = (print s
+           ; print "\n"
+           ; OS.Process.exit OS.Process.failure
+            )
+
+val (INCLUDE_FILE
+   , INCLUDE_DIR) =
+    case OS.Process.getEnv "HOME" of
+      SOME home => (home ^ "/.shackl", home ^ "/.shackl.d")
+    | NONE      => die "No environment variable 'HOME'"
 
 fun exists file = FS.access (file, nil)
 val remove = FS.remove
@@ -35,9 +44,12 @@ fun main infile =
       let
         val mlbfile = OS.Path.base infile ^ ".mlb"
         val _ = writeFile mlbfile (env () ^ "\n%pre " ^ infile)
-        val _ = OS.Process.system("premlton " ^ mlbfile)
-        val _ = remove mlbfile
+        val _ =
+            OS.Process.system
+              ("premlton -mlb-path-var \"SHACKL " ^ INCLUDE_DIR ^ "\" "
+               ^ mlbfile)
+        (* val _ = remove mlbfile *)
       in
         ()
       end
-    else print (infile ^ " does not exist\n")
+    else die (infile ^ " does not exist")
