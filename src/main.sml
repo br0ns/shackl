@@ -48,7 +48,7 @@ fun main infile =
             OS.Process.system
               ("premlton -mlb-path-var \"SHACKL " ^ INCLUDE_DIR ^ "\" "
                ^ mlbfile)
-        (* val _ = remove mlbfile *)
+        val _ = remove mlbfile
       in
         ()
       end
